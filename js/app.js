@@ -38,35 +38,20 @@ video.addEventListener('loadedmetadata', function () {
   resize();
 }, false);
 
-function oneMinVideoGo() {
-  video.currentTime = 60;
-  video.pause();
+const skipTimeButtons = document.querySelectorAll(".snap_button")
+
+for (const elem of skipTimeButtons) {
+  elem.addEventListener("click", (event) => {
+    var minValue = parseInt(event.currentTarget.innerHTML);
+    video.currentTime = minValue * 60;
+  })
 }
-function fiveMinVideoGo() {
-  video.currentTime = 300;
-  video.pause();
-}
-function tenMinVideoGo() {
-  video.currentTime = 600;
-  video.pause();
-}
-oneMinBtn.addEventListener('click', oneMinVideoGo);
-fiveMinBtn.addEventListener('click', fiveMinVideoGo);
-tenMinBtn.addEventListener('click', tenMinVideoGo);
 
-
-// function jampVideoTo() {
-//   var allMinBtn = document.querySelectorAll('.snap_button');
-//   console.log(allMinBtn)
-//   for (let i = 0; i < allMinBtn.length; i++) {
-//     var minValue = parseInt(allMinBtn[i].outerText);
-//     console.log(minValue)
-//   }
-
-
-// }
-
-oneMinBtn.addEventListener('click', jampVideoTo);
+// $(".snap_button").click(function () {
+//   var minValue = parseInt(this.innerHTML);
+//   // console.log(minValue);
+//   video.currentTime = minValue * 60;
+// });
 
 function resize() {
   ratio = video.videoWidth / video.videoHeight;
